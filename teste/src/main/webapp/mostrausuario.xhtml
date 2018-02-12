@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>Usuário cadastrado</title>
+</h:head>
+<h:body>
+    <h1>Usuário cadastrado</h1>
+    <hr/>
+    <p>Nome: <h:outputLabel value="#{usuarioBean.nome}"/></p>
+    <p>E-Mail: <h:outputLink value="mailto:#{usuarioBean.email}"/></p>
+    <p>Senha: <h:outputLabel value="#{usuarioBean.senha}"/></p>
+    <hr/>
+    <h:form>
+        <h:commandLink action="index" value="Início"/>
+    </h:form>
+</h:body>
+</html>
