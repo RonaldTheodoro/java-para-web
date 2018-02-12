@@ -176,3 +176,6 @@ nbactions.xml
 
 
 # End of https://www.gitignore.io/api/visualstudiocode
+
+*.sqlite3
+*.db
