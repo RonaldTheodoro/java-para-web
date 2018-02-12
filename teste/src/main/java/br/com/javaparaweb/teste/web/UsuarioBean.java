@@ -1,8 +1,12 @@
 package br.com.javaparaweb.teste.web;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+@ManagedBean(name="usuarioBean")
+@RequestScoped
 public class UsuarioBean {
     private String nome;
     private String email;
