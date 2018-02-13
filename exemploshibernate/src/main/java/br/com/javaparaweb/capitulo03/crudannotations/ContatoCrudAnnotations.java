@@ -3,11 +3,6 @@ package br.com.javaparaweb.capitulo03.crudannotations;
 import java.sql.Date;
 import java.util.List;
 
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.Query;
@@ -46,7 +41,7 @@ public class ContatoCrudAnnotations {
         return (Contato) consulta.uniqueResult();
     }
 
-    public static void main(String[] args) throws SecurityException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException {
+    public static void main(String[] args) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction transacao = sessao.beginTransaction();
         ContatoCrudAnnotations contatoCrud;
