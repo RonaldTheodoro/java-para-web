@@ -33,6 +33,8 @@ public class Endereco implements Serializable {
     private String rua;
     private String cidade;
 
+    public Endereco() { }
+
     public Endereco(Cliente cliente, String rua, String cidade) {
         this.cliente = cliente;
         this.rua = rua;

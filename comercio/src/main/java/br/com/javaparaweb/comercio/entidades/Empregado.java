@@ -26,6 +26,8 @@ public class Empregado implements Serializable {
     @JoinColumn(name="cod_name")
     private Empregado chefe;
 
+    public Empregado() { }
+
     public Empregado(String nome, Empregado chefe) {
         this.nome = nome;
         this.chefe = chefe;

@@ -48,6 +48,8 @@ public class Pedido implements Serializable {
     )
     private Set<Produto> produto = new HashSet<Produto>();
 
+    public Pedido() { }
+
     public Pedido(
             Date dataPedido,
             Time horaPedido,

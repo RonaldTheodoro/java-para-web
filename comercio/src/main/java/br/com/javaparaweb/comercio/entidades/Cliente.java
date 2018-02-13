@@ -33,6 +33,8 @@ public class Cliente implements Serializable {
     @Column(length=45)
     private String nome;
 
+    public Cliente() { }
+
     public Cliente(Endereco endereco, List<Pedido> pedidos, String nome) {
         super();
         this.endereco = endereco;

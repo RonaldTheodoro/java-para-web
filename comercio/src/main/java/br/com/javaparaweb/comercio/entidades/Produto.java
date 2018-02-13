@@ -27,6 +27,14 @@ public class Produto implements Serializable {
     @JoinColumn(name="cod_categoria")
     private Categoria categoria;
 
+    public Produto() { }
+
+    public Produto(String descricao, Float preco, Categoria categoria) {
+        this.descricao = descricao;
+        this.preco = preco;
+        this.categoria = categoria;
+    }
+
     public Integer getProduto() {
         return produto;
     }

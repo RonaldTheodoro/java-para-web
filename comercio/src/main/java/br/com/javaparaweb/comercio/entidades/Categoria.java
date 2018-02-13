@@ -25,6 +25,8 @@ public class Categoria implements Serializable {
     @Lob
     private String resumo;
 
+    public Categoria() { }
+
     public Categoria(String descricao, String resumo) {
         this.descricao = descricao;
         this.resumo = resumo;
