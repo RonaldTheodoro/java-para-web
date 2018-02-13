@@ -3,11 +3,15 @@ package br.com.javaparaweb.comercio.entidades;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="empregado")
 public class Empregado implements Serializable {
     private static final long serialVersionUID = -4102221546795945888L;
 

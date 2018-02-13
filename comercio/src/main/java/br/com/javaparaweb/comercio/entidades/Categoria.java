@@ -3,10 +3,14 @@ package br.com.javaparaweb.comercio.entidades;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="categoria")
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 4761805689019386635L;
     
