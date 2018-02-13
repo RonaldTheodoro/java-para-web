@@ -15,7 +15,8 @@ public class ContatoCrudJDBC {
     public void salvar(Contato contato) {
         Connection conexao = this.geraConexao();
         PreparedStatement insereSt = null;
-        String sql = "INSERT INTO contato (nome, telefone, email, dt_cad, obs) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contato"
+            + "(nome, telefone, email, dt_cad, obs) VALUES (?, ?, ?, ?, ?)";
         try {
             insereSt = conexao.prepareStatement(sql);
             insereSt.setString(1, contato.getNome());
@@ -42,11 +43,60 @@ public class ContatoCrudJDBC {
     }
 
     public void atualizar(Contato contato) {
-        
+        Connection conexao = this.geraConexao();
+        PreparedStatement atualizaSt = null;
+
+        String sql = "UPDATE contato SET"
+            + "nome = ?, telefone = ?, email = ?, obs = ? WHERE codigo = ?";
+
+        try {
+            atualizaSt = conexao.prepareStatement(sql);
+            atualizaSt.setString(1, contato.getNome());
+            atualizaSt.setString(2, contato.getTelefone());
+            atualizaSt.setString(3, contato.getEmail());
+            atualizaSt.setString(4, contato.getObs());
+            atualizaSt.setInt(5, contato.getCodigo());
+            atualizaSt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(
+                "Erro ao atualizar contato. Mensagem: " + e.getMessage()
+            );
+        } finally {
+            try {
+                atualizaSt.close();
+                conexao.close();
+            } catch (Throwable e) {
+                System.out.println(
+                    "Erro ao fechar operações de atualização. Mensagem: "
+                    + e.getMessage()
+                );
+            }
+        }
     }
     
     public void excluir(Contato contato) {
-        
+        Connection conexao = this.geraConexao();
+        PreparedStatement excluiSt = null;
+
+        String sql = "DELETE FROM contato WHERE codigo = ?";
+
+        try {
+            excluiSt = conexao.prepareStatement(sql);
+            excluiSt.setInt(1, contato.getCodigo());
+            excluiSt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir contato. Mensagem: "
+                    + e.getMessage());
+        } finally {
+            try {
+                excluiSt.close();
+                conexao.close();
+            } catch (Throwable e) {
+                System.out
+                        .println("Erro ao fechar operações de exclusão. Mensagem: "
+                                + e.getMessage());
+            }
+        }
     }
 
     public List<Contato> listar() {
@@ -90,7 +140,45 @@ public class ContatoCrudJDBC {
     }
 
     public Contato buscaContato(int valor) {
-        return null;
+        Connection conexao = this.geraConexao();
+        PreparedStatement consulta = null;
+        ResultSet resultado = null;
+        Contato contato = null;
+
+        String sql = "SELECT * FROM contato WHERE codigo = ?";
+
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, valor);
+            resultado = consulta.executeQuery();
+
+            if (resultado.next()) {
+                contato = new Contato();
+                contato.setCodigo(resultado.getInt("codigo"));
+                contato.setNome(resultado.getString("nome"));
+                contato.setTelefone(resultado.getString("telefone"));
+                contato.setEmail(resultado.getString("email"));
+                contato.setDt_cad(resultado.getDate("dt_cad"));
+                contato.setObs(resultado.getString("obs"));
+            }
+        } catch (SQLException e) {
+            System.out.println(
+                "Erro ao buscar código do contato. Mensagem: "
+                 + e.getMessage()
+            );
+        } finally {
+            try {
+                consulta.close();
+                resultado.close();
+                conexao.close();
+            } catch (Throwable e) {
+                System.out.println(
+                    "Erro ao fechar operações de consulta. Mensagem: "
+                    + e.getMessage()
+                );
+            }
+        }
+        return contato;
     }
 
     public Connection geraConexao() {
