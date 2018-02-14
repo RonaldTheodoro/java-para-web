@@ -20,7 +20,7 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name="code_cliente")
+    @Column(name="cod_cliente")
     private Integer cliente;
 
     @OneToOne
