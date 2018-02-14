@@ -8,10 +8,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="produto")
+@NamedQuery(
+    name="consultaProdutoPorCategoria",
+    query="SELECT p FROM Produto p JOIN p.categoria c WHERE c.categoria = :categoria"
+)
+@NamedQueries({
+    @NamedQuery(
+        name="consultaProdutoPorDescricao",
+        query="SELECT p FROM Produto p WHERE p.descricao LIKE :descricao"
+    ),
+    @NamedQuery(
+        name="consultaProdutoPorChavePrimaria",
+        query="SELECT p FROM Produto p WHERE p.produto = :produto"
+    )
+})
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1794663692400039725L;
 
