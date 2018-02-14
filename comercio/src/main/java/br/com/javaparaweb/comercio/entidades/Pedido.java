@@ -35,6 +35,10 @@ public class Pedido implements Serializable {
     private String descricao;
 
     @ManyToOne
+    @JoinColumn(name="cod_cliente")
+    private Cliente cliente;
+
+    @ManyToOne
     @JoinColumn(name="cod_empregado")
     private Empregado empregado;
 
@@ -93,6 +97,14 @@ public class Pedido implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Empregado getEmpregado() {
