@@ -13,21 +13,21 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table(name="enderco")
+@Table(name="endereco")
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 6146162020804865991L;
 
     @Id
-    @GeneratedValue(generator="fk_enderco_cod_cliente")
+    @GeneratedValue(generator="fk_endereco_cod_cliente")
     @GenericGenerator(
-        name="fk_enderco_cod_cliente",
+        name="fk_endereco_cod_cliente",
         strategy="foreign",
         parameters=@Parameter(name="property", value="cliente")
     )
     @Column(name="cod_cliente")
     private Integer endereco;
 
-    @OneToOne(mappedBy="enderco")
+    @OneToOne(mappedBy="endereco")
     private Cliente cliente;
 
     private String rua;
